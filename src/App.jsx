@@ -4,6 +4,7 @@ import { QueryClient } from "@tanstack/query-core";
 import { QueryClientProvider } from "@tanstack/react-query";
 import ReferralType from "./component/pages/developer/settings/referral-type/ReferralType";
 import Department from "./component/pages/developer/settings/department/Department";
+import ReferralSource from "./component/pages/developer/settings/referral-source/ReferralSource";
 // import Department from "./component/pages/developer/settings/department/Department";
 // import ReferralType from "./component/pages/developer/settings/referral-type/ReferralType";
 
@@ -21,6 +22,10 @@ function App() {
               <Route
                 path={"/settings/referral-type"}
                 element={<ReferralType />}
+              />
+              <Route
+                path={"/settings/referral-source"}
+                element={<ReferralSource />}
               />
             </Routes>
           </Router>
