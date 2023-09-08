@@ -2,8 +2,12 @@ import React from "react";
 import { setIsAdd } from "../../store/StoreAction";
 import { StoreContext } from "../../store/StoreContext";
 
-// CYCY url // cyrenemlumabas@gmail.com
-export const urlPathTm = "http://localhost/training/tm-practice";
+// // CYCY url // cyrenemlumabas@gmail.com
+// export const urlPathTm = "http://localhost/training/tm-practice";
+// export const imgUrlPathTm = "http://localhost/training/tm-practice/public/img";
+
+// Emms
+export const urlPathTm = "http://localhost/training/tm-practice-emms";
 export const imgUrlPathTm = "http://localhost/training/tm-practice/public/img";
 
 // // Patrick

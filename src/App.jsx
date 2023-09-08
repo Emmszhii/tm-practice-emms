@@ -2,7 +2,10 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { StoreProvider } from "./store/StoreContext";
 import { QueryClient } from "@tanstack/query-core";
 import { QueryClientProvider } from "@tanstack/react-query";
+import ReferralType from "./component/pages/developer/settings/referral-type/ReferralType";
 import Department from "./component/pages/developer/settings/department/Department";
+// import Department from "./component/pages/developer/settings/department/Department";
+// import ReferralType from "./component/pages/developer/settings/referral-type/ReferralType";
 
 function App() {
   const queryClient = new QueryClient();
@@ -14,6 +17,11 @@ function App() {
           <Router>
             <Routes>
               <Route path={`*`} element={<Department />} />
+              <Route path={"/settings/department"} element={<Department />} />
+              <Route
+                path={"/settings/referral-type"}
+                element={<ReferralType />}
+              />
             </Routes>
           </Router>
         </StoreProvider>

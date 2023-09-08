@@ -5,11 +5,11 @@ import Header from "../../../../partials/Header";
 import ModalValidate from "../../../../partials/modals/ModalValidate";
 import Navigation from "../../../../partials/Navigation";
 import Breadcrumbs from "../../../../partials/Breadcrumbs";
-import DepartmentTable from "./DepartmentTable";
-import ModalAddDepartment from "./ModalAddDepartment";
 import Toast from "../../../../partials/Toast";
+import ReferralTypeTable from "./ReferralTypeTable";
+import ModalAddReferralType from "./ModalAddReferralType";
 
-const Department = () => {
+const ReferralType = () => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [itemEdit, setItemEdit] = React.useState(null);
 
@@ -27,26 +27,25 @@ const Department = () => {
       <Header />
       <section className={`main__grid ${store.isShow ? "open" : ""}`}>
         <aside className={`${store.isShow ? "open " : ""}   `}>
-          <Navigation menu="settings" submenu="settingsDepartment" />
+          <Navigation menu="settings" submenu="settingsReferralType" />
         </aside>
         <main className="px-2 lg:pr-10">
           <Breadcrumbs param={location.search} />
           <div className="flex justify-between items-center my-5">
-            <h1 className="mb-0">Department</h1>
+            <h1 className="mb-0">Referral Type</h1>
             <button className="btn btn--accent btn--sm" onClick={handleAdd}>
               Add
             </button>
           </div>
-          <DepartmentTable setItemEdit={setItemEdit} />
+          <ReferralTypeTable setItemEdit={setItemEdit} />
         </main>
       </section>
 
-      {store.isAdd && <ModalAddDepartment itemEdit={itemEdit} />}
+      {store.isAdd && <ModalAddReferralType itemEdit={itemEdit} />}
       {store.validate && <ModalValidate />}
-
       {store.success && <Toast />}
     </>
   );
 };
 
-export default Department;
+export default ReferralType;

@@ -19,7 +19,7 @@ import ModalConfirm from "../../../../partials/modals/ModalConfirm.jsx";
 import ModalDeleteAndRestore from "../../../../partials/modals/ModalDeleteAndRestore.jsx";
 import TableSpinner from "../../../../partials/spinners/TableSpinner.jsx";
 
-const DepartmentTable = ({ setItemEdit }) => {
+const ReferralTypeTable = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [dataItem, setData] = React.useState(null);
   const [id, setId] = React.useState(null);
@@ -32,11 +32,11 @@ const DepartmentTable = ({ setItemEdit }) => {
     isLoading,
     isFetching,
     error,
-    data: department,
+    data: referralType,
   } = useQueryData(
-    `/v1/controllers/developer/settings/department/department.php`, // endpoint
+    `/v1/controllers/developer/settings/referral-type/referralType.php`, // endpoint
     "get", // method
-    "settings-department" // key
+    "settings-referral-type" // key
   );
 
   const handleEdit = (item) => {
@@ -46,21 +46,21 @@ const DepartmentTable = ({ setItemEdit }) => {
 
   const handleArchive = (item) => {
     dispatch(setIsConfirm(true));
-    setId(item.department_aid);
+    setId(item.referral_type_aid);
     setData(item);
     setDel(null);
   };
 
   const handleRestore = (item) => {
     dispatch(setIsRestore(true));
-    setId(item.department_aid);
+    setId(item.referral_type_aid);
     setData(item);
     setDel(null);
   };
 
   const handleDelete = (item) => {
     dispatch(setIsRestore(true));
-    setId(item.department_aid);
+    setId(item.referral_type_aid);
     setData(item);
     setDel(true);
   };
@@ -76,11 +76,12 @@ const DepartmentTable = ({ setItemEdit }) => {
               <th>#</th>
               <th>Status</th>
               <th>Name</th>
+              <th>Description</th>
               <th className="action lg:hidden"></th>
             </tr>
           </thead>
           <tbody>
-            {(isLoading || department?.data.length === 0) && (
+            {(isLoading || referralType?.data.length === 0) && (
               <tr className="text-center ">
                 <td colSpan="100%" className="p-10">
                   {isLoading ? (
@@ -100,26 +101,26 @@ const DepartmentTable = ({ setItemEdit }) => {
               </tr>
             )}
 
-            {department?.data.map((item, key) => {
-              active += item.department_is_active;
-              inactive += !item.department_is_active;
+            {referralType?.data.map((item, key) => {
+              active += item.referral_type_is_active === 1;
+              inactive += item.referral_type_is_active === 0;
               return (
                 <tr key={key}>
                   <td>{counter++}.</td>
                   <td>
-                    {item.department_is_active === 1 ? (
+                    {item.referral_type_is_active === 1 ? (
                       <Pills label="Active" bgc="bg-success" />
                     ) : (
                       <Pills label="Inactive" bgc="bg-archive" />
                     )}
                   </td>
-                  <td>{item.department_name}</td>
+                  <td>{item.referral_type_name}</td>
 
                   <td
                     className="table__action top-0 right-5 "
                     data-ellipsis=". . ."
                   >
-                    {item.department_is_active === 1 ? (
+                    {item.referral_type_is_active === 1 ? (
                       <ul className=" flex items-center  gap-4 bg-">
                         <li>
                           <button
@@ -170,17 +171,17 @@ const DepartmentTable = ({ setItemEdit }) => {
         </table>
       </div>
       <Footer
-        record={department?.data.length}
+        record={referralType?.count}
         active={active}
         inactive={inactive}
       />
 
       {store.isConfirm && (
         <ModalConfirm
-          mysqlApiArchive={`/v1/controllers/developer/settings/department/active.php?departmentId=${id}`}
-          msg={"Are you sure you want to archive this department?"}
-          item={dataItem.department_name}
-          queryKey={"settings-department"}
+          mysqlApiArchive={`/v1/controllers/developer/settings/referralType/active.php?referralTypeId=${id}`}
+          msg={"Are you sure you want to archive this referralType?"}
+          item={dataItem.referral_type_name}
+          queryKey={"settings-referralType"}
         />
       )}
 
@@ -188,19 +189,19 @@ const DepartmentTable = ({ setItemEdit }) => {
         <ModalDeleteAndRestore
           id={id}
           isDel={isDel}
-          mysqlApiDelete={`/v1/controllers/developer/settings/department/department.php?departmentId=${id}`}
-          mysqlApiRestore={`/v1/controllers/developer/settings/department/active.php?departmentId=${id}`}
+          mysqlApiDelete={`/v1/controllers/developer/settings/referralType/referralType.php?referralTypeId=${id}`}
+          mysqlApiRestore={`/v1/controllers/developer/settings/referralType/active.php?referralTypeId=${id}`}
           msg={
             isDel
-              ? "Are you sure you want to delete this department?"
-              : "Are you sure you want to restore this department?"
+              ? "Are you sure you want to delete this referralType?"
+              : "Are you sure you want to restore this referralType?"
           }
-          item={dataItem.department_name}
-          queryKey={"settings-department"}
+          item={dataItem.referral_type_name}
+          queryKey={"settings-referralType"}
         />
       )}
     </>
   );
 };
 
-export default DepartmentTable;
+export default ReferralTypeTable;

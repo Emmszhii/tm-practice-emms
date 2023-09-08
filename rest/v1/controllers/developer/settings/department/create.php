@@ -12,7 +12,7 @@ if (array_key_exists("departmentId", $_GET)) {
 checkPayload($data);
 // get data
 $department->department_name = checkIndex($data, "department_name");
-$department->department_description = checkIndex($data, "department_description");
+// $department->department_description = checkIndex($data, "department_description");
 $department->department_is_active = 1;
 $department->department_created_at = date("Y-m-d H:i:s");
 $department->department_updated_at = date("Y-m-d H:i:s");

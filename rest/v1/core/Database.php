@@ -9,7 +9,7 @@ class Database
 
         // Localhost
         $host = "localhost";
-        $dbname = "tm_practice_emman";
+        $dbname = "tm_practice";
         $username = "root";
         $password = "";
 

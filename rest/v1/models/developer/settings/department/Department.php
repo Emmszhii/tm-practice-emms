@@ -8,8 +8,6 @@ class Department
     public $department_created_at;
     public $department_updated_at;
 
-    public $employee_aid;
-
     public $connection;
     public $lastInsertedId;
     public $tblDepartment;
@@ -26,19 +24,19 @@ class Department
         try {
             $sql = "insert into {$this->tblDepartment} ";
             $sql .= "( department_name, ";
-            $sql .= "department_description, ";
+            // $sql .= "department_description, ";
             $sql .= "department_is_active, ";
             $sql .= "department_created_at, ";
             $sql .= "department_updated_at ) values ( ";
             $sql .= ":department_name, ";
-            $sql .= ":department_description, ";
+            // $sql .= ":department_description, ";
             $sql .= ":department_is_active, ";
             $sql .= ":department_created_at, ";
             $sql .= ":department_updated_at ) ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "department_name" => $this->department_name,
-                "department_description" => $this->department_description,
+                // "department_description" => $this->department_description,
                 "department_is_active" => $this->department_is_active,
                 "department_created_at" => $this->department_created_at,
                 "department_updated_at" => $this->department_updated_at,
