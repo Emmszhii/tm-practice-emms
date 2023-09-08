@@ -6,8 +6,6 @@ $conn = checkDbConnection();
 $department = new Department($conn);
 // get $_GET data
 
-
-
 $error = [];
 $returnData = [];
 if (array_key_exists("departmentId", $_GET)) {
