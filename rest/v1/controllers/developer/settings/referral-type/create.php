@@ -20,4 +20,4 @@ $referralType->referral_type_updated_at = date("Y-m-d H:i:s");
 // isNameExist($referralType, $referralType->department_name);
 // create
 $query = checkCreate($referralType);
-returnSuccess($referralType, "Department", $query);
+returnSuccess($referralType, "Referral Type", $query);

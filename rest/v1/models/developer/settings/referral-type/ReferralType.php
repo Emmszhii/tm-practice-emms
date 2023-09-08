@@ -25,7 +25,7 @@ class ReferralType
     {
         try {
             $sql = "insert into {$this->tblReferralType} ";
-            $sql .= "( referral_type_name, ";
+            $sql .= " ( referral_type_name, ";
             $sql .= "referral_type_description, ";
             $sql .= "referral_type_is_active, ";
             $sql .= "referral_type_created_at, ";

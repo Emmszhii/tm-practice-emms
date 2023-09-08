@@ -9,7 +9,7 @@ import {
   setValidate,
 } from "../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../store/StoreContext";
-import { InputText } from "../../../../helpers/FormInputs";
+import { InputText, InputTextArea } from "../../../../helpers/FormInputs";
 import { handleEscape } from "../../../../helpers/functions-general";
 import { queryData } from "../../../../helpers/queryData";
 import ButtonSpinner from "../../../../partials/spinners/ButtonSpinner";
@@ -23,14 +23,14 @@ const ModalAddReferralType = ({ itemEdit }) => {
     mutationFn: (values) =>
       queryData(
         itemEdit
-          ? `/v1/controllers/developer/settings/referal-type/referralType.php?referralTypeId=${itemEdit.department_aid}` //update
-          : "/v1/controllers/developer/settings/referal-type/referralType.php", //add
+          ? `/v1/controllers/developer/settings/referral-type/referralType.php?referralTypeId=${itemEdit.referral_type_aid}` //update
+          : "/v1/controllers/developer/settings/referral-type/referralType.php", //add
         itemEdit ? "put" : "post",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["settings-referal-type"] });
+      queryClient.invalidateQueries({ queryKey: ["settings-referral-type"] });
       if (data.success) {
         dispatch(setIsAdd(false));
         dispatch(setSuccess(true));
@@ -46,7 +46,9 @@ const ModalAddReferralType = ({ itemEdit }) => {
 
   const initVal = {
     referral_type_name: itemEdit ? itemEdit.referral_type_name : "",
-    referral_type_description: itemEdit ? itemEdit.referral_type_description : "",
+    referral_type_description: itemEdit
+      ? itemEdit.referral_type_description
+      : "",
 
     referral_type_name_old: itemEdit ? itemEdit.referral_type_name : "",
   };
@@ -95,7 +97,7 @@ const ModalAddReferralType = ({ itemEdit }) => {
                           name="referral_type_name"
                           disabled={mutation.isLoading}
                         />
-                        <InputText
+                        <InputTextArea
                           label="Description"
                           type="text"
                           name="referral_type_description"

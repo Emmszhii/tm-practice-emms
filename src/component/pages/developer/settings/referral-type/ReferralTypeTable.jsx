@@ -115,7 +115,7 @@ const ReferralTypeTable = ({ setItemEdit }) => {
                     )}
                   </td>
                   <td>{item.referral_type_name}</td>
-
+                  <td>{item.referral_type_description}</td>
                   <td
                     className="table__action top-0 right-5 "
                     data-ellipsis=". . ."
@@ -178,10 +178,10 @@ const ReferralTypeTable = ({ setItemEdit }) => {
 
       {store.isConfirm && (
         <ModalConfirm
-          mysqlApiArchive={`/v1/controllers/developer/settings/referralType/active.php?referralTypeId=${id}`}
-          msg={"Are you sure you want to archive this referralType?"}
+          mysqlApiArchive={`/v1/controllers/developer/settings/referral-type/active.php?referralTypeId=${id}`}
+          msg={"Are you sure you want to archive this referral type?"}
           item={dataItem.referral_type_name}
-          queryKey={"settings-referralType"}
+          queryKey={"settings-referral-type"}
         />
       )}
 
@@ -189,15 +189,15 @@ const ReferralTypeTable = ({ setItemEdit }) => {
         <ModalDeleteAndRestore
           id={id}
           isDel={isDel}
-          mysqlApiDelete={`/v1/controllers/developer/settings/referralType/referralType.php?referralTypeId=${id}`}
-          mysqlApiRestore={`/v1/controllers/developer/settings/referralType/active.php?referralTypeId=${id}`}
+          mysqlApiDelete={`/v1/controllers/developer/settings/referral-type/referralType.php?referralTypeId=${id}`}
+          mysqlApiRestore={`/v1/controllers/developer/settings/referral-type/active.php?referralTypeId=${id}`}
           msg={
             isDel
-              ? "Are you sure you want to delete this referralType?"
-              : "Are you sure you want to restore this referralType?"
+              ? "Are you sure you want to delete this referral type?"
+              : "Are you sure you want to restore this referral type?"
           }
           item={dataItem.referral_type_name}
-          queryKey={"settings-referralType"}
+          queryKey={"settings-referral-type"}
         />
       )}
     </>
